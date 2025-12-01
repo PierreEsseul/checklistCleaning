@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire Ménage Checkin-Concierge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form id="cleaning-form">
+    <h1>Checkin-Concierge – Check-list ménage</h1>
+
+    <!-- Étape 0 : Infos générales -->
+    <div class="step active">
+      <h2>Informations générales</h2>
+
+      <div class="field-group">
+        <label for="logement">Nom du logement</label>
+        <select id="logement" name="logement">
+          <option value="">-- Sélectionner un logement --</option>
+          <option value="BERGERET">BERGERET</option>
+          <option value="BERGERET">BOULOGNE</option>
+          <option value="MAGENTA">MAGENTA</option>
+          <option value="ORSEL">ORSEL</option>
+          <option value="SURMELIN">SURMELIN</option>
+          <option value="TEMPLE 165">TEMPLE 165</option>
+          <option value="VILLA CHAPTAL">VILLA CHAPTAL</option>
+          <option value="Autre">Autre (à préciser en commentaire)</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="agent">Prénom de l’agent</label>
+        <input type="text" id="agent" name="agent" placeholder="Votre prénom">
+      </div>
+
+      <div class="field-group">
+        <label for="date">Date de l’intervention</label>
+        <input type="date" id="date" name="date">
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="btn" disabled>Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 1 : Arrivée / Contrôle général -->
+    <div class="step">
+      <h2>Arrivée & contrôle général</h2>
+
+      <label><input type="checkbox" name="video_avant"> Faire une vidéo intégrale du logement AVANT ménage (toutes les pièces, placards, équipements)</label><br>
+      <label><input type="checkbox" name="controle_logement"> Vérifier que rien n'a été cassé / endommagé</label><br>
+      <label><input type="checkbox" name="controle_draps"> Contrôler l’état des draps et serviettes (taches, déchirures)</label><br>
+      <label><input type="checkbox" name="defaire_lits"> Défaire les lits et lancer une machine à laver avec draps et serviettes</label><br>
+      <label><input type="checkbox" name="arroser_plantes"> Arroser les plantes si présentes</label><br>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 2 : Salle de bain -->
+    <div class="step">
+      <h2>Salle de bain</h2>
+
+      <label><input type="checkbox" name="nettoyer_douche"> Nettoyer la douche/baignoire et la robinetterie</label><br>
+      <label><input type="checkbox" name="nettoyer_siphon_sdb"> Nettoyer le siphon de la douche et du lavabo (si accessible)</label><br>
+      <label><input type="checkbox" name="nettoyer_paroie"> Nettoyer la paroi ou le rideau de douche (enlever les traces)</label><br>
+      <label><input type="checkbox" name="nettoyer_evier_sdb"> Nettoyer le lavabo</label><br>
+      <label><input type="checkbox" name="nettoyer_wc"> Nettoyer et désinfecter les toilettes (intérieur + extérieur) et refermer la cuvette</label><br>
+      <label><input type="checkbox" name="nettoyer_miroir"> Nettoyer les miroirs (sans traces)</label><br>
+      <label><input type="checkbox" name="papier_toilette"> Vérifier le papier toilette : laisser un rouleau neuf, plus le rouleau entamé s’il y en a un</label><br>
+      <label><input type="checkbox" name="savon_tapis"> Vérifier savon, tapis de bain propre</label><br>
+      <label><input type="checkbox" name="cheveux_sdb"> Vérifier qu’il n’y a aucun cheveu dans la salle de bain ainsi que les tiroirs</label><br>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 3 : Cuisine -->
+    <div class="step">
+      <h2>Cuisine</h2>
+
+      <label><input type="checkbox" name="vider_cafetiere"> Vider la cafetière, jeter les capsules usagées et la nettoyer + vider l'eau</label><br>
+      <label><input type="checkbox" name="nettoyer_surfaces"> Nettoyer toutes les surfaces (plan de travail, crédence, plaques, hotte extérieure)</label><br>
+      <label><input type="checkbox" name="nettoyer_evier_cuisine"> Nettoyer l’évier de la cuisine et vérifier/nettoyer le siphon si nécessaire</label><br>
+      <label><input type="checkbox" name="vider_lave_vaisselle"> Vérifier que le lave-vaisselle est vidé (si présent)</label><br>
+      <label><input type="checkbox" name="vider_four_frigo"> Vérifier que four / micro-ondes / frigo sont vidés et propres</label><br>
+      <label><input type="checkbox" name="ordonner_vaisselle"> Vérifier et ranger la vaisselle (propre et complète)</label><br>
+      <label><input type="checkbox" name="eponge_liquide_torchon"> Vérifier : éponge propre, liquide vaisselle présent, torchon propre dans la cuisine</label><br>
+      <label><input type="checkbox" name="poubelles_vides"> Vider toutes les poubelles et remettre un sac propre (cuisine + salle de bain)</label><br>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 4 : Linge -->
+    <div class="step">
+      <h2>Linge</h2>
+
+      <label><input type="checkbox" name="sechage_linge"> Une fois la machine terminée, aller à la laverie pour sécher draps et serviettes puis plier et ranger le linge propre</label><br>
+      <label><input type="checkbox" name="linge_rangement"> Draps et serviettes de rechange rangés proprement</label><br>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 5 : Chambres & lits -->
+    <div class="step">
+      <h2>Chambres & lits</h2>
+
+      <label><input type="checkbox" name="lits_refaits"> Refaire les lits avec drap-housse, housse de couette et taies (oreillers posés sur la couette)</label><br>
+      <label><input type="checkbox" name="serviettes_ok"> Mettre 1 grande + 1 petite serviette par personne + tapis de bain + chiffon propre dans la cuisine</label><br>
+      <label><input type="checkbox" name="canape_lit"> Si canapé-lit : préparer drap-housse, housse de couette, oreillers et serviettes en évidence</label><br>
+      <label><input type="checkbox" name="capsules_cafe"> Laisser 1 capsule de café par personne en évidence</label><br>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 6 : Sols -->
+    <div class="step">
+      <h2>Sols</h2>
+
+      <label><input type="checkbox" name="verif_sous_meubles"> Vérifier sous les lits, canapés et meubles (pas d’objets, miettes, poussière)</label><br>
+      <label><input type="checkbox" name="aspirateur"> Aspirer tous les sols</label><br>
+      <label><input type="checkbox" name="aspirateur_vide"> Vider l’aspirateur à la fin</label><br>
+      <label><input type="checkbox" name="serpilliere"> Passer la serpillière partout avec un produit adapté au sol (parquet = produit spécial bois, carrelage = produit standard)</label><br>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 7 : Chauffage & contrôles finaux -->
+    <div class="step">
+      <h2>Chauffage & contrôles finaux</h2>
+
+      <label><input type="checkbox" name="chauffage_reglage"> Vérifier les chauffages : baisser s’ils sont au maximum</label><br>
+      <label>
+        <input type="checkbox" name="chauffage_hiver_ete">
+        Hiver : radiateurs électriques sur 2, chaudière gaz en mode éco, collectif ne pas toucher / Été : radiateurs électriques éteints, chaudière gaz en mode éco, collectif ne pas toucher
+      </label><br>
+      <label><input type="checkbox" name="lumieres_ok"> Vérifier que toutes les lumières fonctionnent (signaler les ampoules grillées sur WhatsApp)</label><br>
+      <label><input type="checkbox" name="appareils_eteints"> Vérifier que four, plaques, etc. sont éteints</label><br>
+      <label><input type="checkbox" name="portes_fenetres"> Vérifier que toutes les fenêtres et portes sont fermées</label><br>
+      <label><input type="checkbox" name="video_apres"> Faire une vidéo intégrale du logement APRÈS ménage en montrant que l’aspirateur a bien été vidé</label><br>
+      <label><input type="checkbox" name="envoyer_video"> Envoyer la vidéo finale sur le groupe WhatsApp</label><br>
+      <label><input type="checkbox" name="message_probleme"> Envoyer un message si manque de produits ou problème (casse, anomalie…)</label><br>
+
+      <div class="field-group">
+        <label for="commentaires">Commentaires / problèmes rencontrés</label><br>
+        <textarea id="commentaires" name="commentaires" placeholder="Ex : ampoule grillée chambre, fuite sous évier, etc."></textarea>
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
+      </div>
+    </div>
+
+    <!-- Étape 8 : Récap temps & dépenses -->
+    <div class="step">
+      <h2>Récap temps & dépenses</h2>
+      <p>À remplir à la fin de l’intervention.</p>
+
+      <div class="field-group">
+        <label for="heures_travail">Nombre d'heures effectuées</label>
+        <input type="number" id="heures_travail" name="heures_travail" min="0" step="0.25" placeholder="Ex : 2.5">
+      </div>
+
+      <p class="amount-row">
+        Montant ménage (15 € / h) :
+        <span id="montant_menage">0,00 €</span>
+      </p>
+
+      <div class="field-group">
+        <label for="depenses_supermarche">Dépenses supermarché (€)</label>
+        <input type="number" id="depenses_supermarche" name="depenses_supermarche" min="0" step="0.01" placeholder="Ex : 7.50">
+      </div>
+
+      <div class="field-group">
+        <label for="depenses_laverie">Montant laverie (€)</label>
+        <input type="number" id="depenses_laverie" name="depenses_laverie" min="0" step="0.01" placeholder="Ex : 4.00">
+      </div>
+
+      <p class="amount-row amount-total">
+        Total :
+        <span id="montant_total">0,00 €</span>
+      </p>
+
+      <div class="buttons">
+        <button type="button" class="btn" onclick="prevStep()">Précédent</button>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </div>
+
+      <div id="form-result" class="form-result"></div>
+    </div>
+  </form>
+
+  <!-- Nouveau SDK EmailJS v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" type="text/javascript"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
