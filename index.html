@@ -12,6 +12,12 @@
   <form id="cleaning-form">
     <h1>Checkin-Concierge – Check-list ménage</h1>
 
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="step-indicator" id="stepIndicator"></div>
+    
+
     <!-- Étape 0 : Infos générales -->
     <div class="step active">
       <h2>Informations générales</h2>
@@ -25,11 +31,14 @@
           <option value="MAGENTA">MAGENTA</option>
           <option value="ORSEL">ORSEL</option>
           <option value="SURMELIN">SURMELIN</option>
-          <option value="TEMPLE 165">TEMPLE 165</option>
-          <option value="VILLA CHAPTAL">VILLA CHAPTAL</option>
-          <option value="Autre">Autre (à préciser en commentaire)</option>
+          <option value="TEMPLE165">TEMPLE 165</option>
+          <option value="VILLACHAPTAL">VILLA CHAPTAL</option>
+          <option value="AUTRE">Autre (à préciser en commentaire)</option>
         </select>
       </div>
+
+      <!-- Bloc pour afficher les spécificités de l'appartement (lié au JSON) -->
+      <div id="apt-notes" class="apt-notes"></div>
 
       <div class="field-group">
         <label for="agent">Prénom de l’agent</label>
@@ -55,7 +64,7 @@
       <label><input type="checkbox" name="controle_logement"> Vérifier que rien n'a été cassé / endommagé</label><br>
       <label><input type="checkbox" name="controle_draps"> Contrôler l’état des draps et serviettes (taches, déchirures)</label><br>
       <label><input type="checkbox" name="defaire_lits"> Défaire les lits et lancer une machine à laver avec draps et serviettes</label><br>
-      <label><input type="checkbox" name="arroser_plantes"> Arroser les plantes si présentes</label><br>
+      <label class="option-plants"><input type="checkbox" name="arroser_plantes"> Arroser les plantes si présentes</label><br>
       <label><input type="checkbox" name="volets"> Ouvrir l’ensemble des volets du logement.</label><br>
 
       <div class="buttons">
@@ -69,7 +78,7 @@
       <h2>Salle de bain</h2>
 
       <label><input type="checkbox" name="nettoyer_douche"> Nettoyer la douche/baignoire et la robinetterie</label><br>
-      <label><input type="checkbox" name="nettoyer_siphon_sdb"> Nettoyer le siphon de la douche et du lavabo (si accessible)</label><br>
+      <label><input type="checkbox" name="nettoyer_siphon_sdb"> Nettoyer le siphon de la douche et du lavabo</label><br>
       <label><input type="checkbox" name="nettoyer_paroie"> Nettoyer la paroi ou le rideau de douche (enlever les traces)</label><br>
       <label><input type="checkbox" name="nettoyer_evier_sdb"> Nettoyer le lavabo</label><br>
       <label><input type="checkbox" name="nettoyer_wc"> Nettoyer et désinfecter les toilettes (intérieur + extérieur) et refermer la cuvette</label><br>
@@ -91,7 +100,7 @@
       <label><input type="checkbox" name="vider_cafetiere"> Vider la cafetière, jeter les capsules usagées et la nettoyer + vider l'eau</label><br>
       <label><input type="checkbox" name="nettoyer_surfaces"> Nettoyer toutes les surfaces (plan de travail, crédence, plaques, hotte extérieure)</label><br>
       <label><input type="checkbox" name="nettoyer_evier_cuisine"> Nettoyer l’évier de la cuisine et vérifier/nettoyer le siphon si nécessaire</label><br>
-      <label><input type="checkbox" name="vider_lave_vaisselle"> Vérifier que le lave-vaisselle est vidé (si présent)</label><br>
+      <label class="option-dishwasher"><input type="checkbox" name="vider_lave_vaisselle"> Vérifier que le lave-vaisselle est vidé (si présent)</label><br>
       <label><input type="checkbox" name="vider_four_frigo"> Vérifier que four / micro-ondes / frigo sont vidés et propres</label><br>
       <label><input type="checkbox" name="ordonner_vaisselle"> Vérifier et ranger la vaisselle (propre et complète)</label><br>
       <label><input type="checkbox" name="eponge_liquide_torchon"> Vérifier : éponge propre, liquide vaisselle présent, torchon propre dans la cuisine</label><br>
@@ -122,7 +131,7 @@
 
       <label><input type="checkbox" name="lits_refaits"> Refaire les lits avec drap-housse, housse de couette et taies (oreillers posés sur la couette)</label><br>
       <label><input type="checkbox" name="serviettes_ok"> Mettre 1 grande + 1 petite serviette par personne + tapis de bain + chiffon propre dans la cuisine</label><br>
-      <label><input type="checkbox" name="canape_lit"> Si canapé-lit : préparer drap-housse, housse de couette, oreillers et serviettes en évidence</label><br>
+      <label class="option-sofabed"><input type="checkbox" name="canape_lit"> Si canapé-lit : préparer drap-housse, housse de couette, oreillers et serviettes en évidence</label><br>
       <label><input type="checkbox" name="capsules_cafe"> Laisser 1 capsule de café par personne en évidence</label><br>
 
       <div class="buttons">

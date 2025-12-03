@@ -4,7 +4,10 @@ const steps = document.querySelectorAll('.step');
 const form = document.getElementById('cleaning-form');
 const resultBox = document.getElementById('form-result');
 
-const STORAGE_KEY = 'cc_cleaning_form_state_v2';
+const progressFill = document.getElementById('progressFill');
+const stepIndicator = document.getElementById('stepIndicator');
+
+const STORAGE_KEY = 'cc_cleaning_form_state_v3';
 
 const heuresInput = document.getElementById('heures_travail');
 const depSuperInput = document.getElementById('depenses_supermarche');
@@ -14,13 +17,29 @@ const montantTotalSpan = document.getElementById('montant_total');
 
 const TAUX_HORAIRE = 15; // 15 €/h
 
+// "Base de données" chargée depuis apartments.json
+let apartmentConfigs = {};
+
 // --- Navigation entre les étapes ---
 
 function showStep(index) {
   steps.forEach((step, i) => {
     step.classList.toggle('active', i === index);
   });
+
+  // Mise à jour de la barre de progression
+  const totalSteps = steps.length;
+  if (progressFill) {
+    const percent = (index / (totalSteps - 1)) * 100;
+    progressFill.style.width = percent + '%';
+  }
+
+  // Texte "Étape X / Y"
+  if (stepIndicator) {
+    stepIndicator.textContent = `Étape ${index + 1} / ${totalSteps}`;
+  }
 }
+
 
 function nextStep() {
   if (currentStep < steps.length - 1) {
@@ -65,11 +84,10 @@ function saveState() {
   const data = {};
   Array.from(form.elements).forEach(el => {
     if (!el.name) return;
-    if (el.type === 'checkbox') {
-      data[el.name] = el.checked;
-    } else {
-      data[el.name] = el.value;
-    }
+  if (el.type === 'checkbox') {   data[el.name] = el.checked;
+  } else {
+   data[el.name] = el.value;
+  }
   });
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
@@ -93,15 +111,77 @@ function loadState() {
   }
 }
 
+// --- Appliquer la config d'un appartement ---
+
+function applyApartmentConfig(code) {
+  const notesBox = document.getElementById('apt-notes');
+  if (!notesBox) return;
+
+  const config = apartmentConfigs[code];
+
+  // Réafficher toutes les options par défaut
+  document.querySelectorAll('.option-dishwasher, .option-plants, .option-sofabed')
+    .forEach(el => el.style.display = 'block');
+
+  if (!config) {
+    notesBox.innerHTML = '';
+    return;
+  }
+
+  let html = `<strong>Spécificités pour ${config.nom} :</strong>`;
+  if (Array.isArray(config.notes) && config.notes.length > 0) {
+    html += '<ul>';
+    config.notes.forEach(n => {
+      html += `<li>${n}</li>`;
+    });
+    html += '</ul>';
+  }
+
+  if (config.maxGuests) {
+    html += `<p>Capacité habituelle : <strong>${config.maxGuests} personnes</strong>.</p>`;
+  }
+
+  notesBox.innerHTML = html;
+
+  const eq = config.equipment || {};
+  const linens = config.linens || {};
+
+  // Affichage conditionnel sur quelques options
+  const dishLabel = document.querySelector('.option-dishwasher');
+  if (dishLabel) dishLabel.style.display = eq.hasDishwasher ? 'block' : 'none';
+
+  const plantsLabel = document.querySelector('.option-plants');
+  if (plantsLabel) plantsLabel.style.display = eq.hasPlants ? 'block' : 'none';
+
+  const sofaLabel = document.querySelector('.option-sofabed');
+  if (sofaLabel) sofaLabel.style.display = linens.hasSofaBed ? 'block' : 'none';
+}
+
 // --- Init ---
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Init EmailJS nouveau SDK v4 
+  // Init EmailJS v4 (mets ta clé publique)
   if (window.emailjs) {
     emailjs.init({
-      publicKey: 'GKgT-pDcU1CUruKvJ', // clé publique EmailJS
+      publicKey: 'YOUR_PUBLIC_KEY', // <-- à remplacer
     });
   }
+
+  // Charger la "base de données" apartments.json
+  fetch('apartments.json')
+    .then(res => res.json())
+    .then(data => {
+      apartmentConfigs = data || {};
+
+      // Appliquer config à l'appartement actuellement sélectionné (y compris via localStorage)
+      const selectLogement = document.getElementById('logement');
+      if (selectLogement) {
+        applyApartmentConfig(selectLogement.value);
+      }
+    })
+    .catch(err => {
+      console.error('Erreur chargement apartments.json', err);
+    });
 
   loadState();
   updateAmounts();
@@ -128,6 +208,15 @@ document.addEventListener('DOMContentLoaded', function() {
       el.addEventListener('input', handler);
     }
   });
+
+  // Quand on change de logement → appliquer la config
+  const selectLogement = document.getElementById('logement');
+  if (selectLogement) {
+    selectLogement.addEventListener('change', function() {
+      applyApartmentConfig(this.value);
+      saveState();
+    });
+  }
 });
 
 // --- Submit du formulaire ---
@@ -143,12 +232,12 @@ form.addEventListener('submit', function(e) {
   const rawDate = formData.get('date') || '';
   let date = '(non renseignée)';
   if (rawDate) {
-    const parts = rawDate.split('-'); // [YYYY, MM, DD]
+    const parts = rawDate.split('-'); // YYYY-MM-DD
     if (parts.length === 3) {
       const [year, month, day] = parts;
       date = `${day}/${month}/${year}`;
     } else {
-      date = rawDate; // fallback au cas où
+      date = rawDate;
     }
   }
 
