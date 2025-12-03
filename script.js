@@ -195,7 +195,7 @@ function applyApartmentConfig(code) {
 
         if (type.includes('nespresso') || type.includes('capsule')) {
           coffeeTextSpan.textContent =
-            "Vider la cafetière à capsules, jeter les capsules usagées, nettoyer la machine et vider le réservoir d'eau.";
+            "Vider les capsules de la cafetière, jeter les capsules usagées, nettoyer la machine et vider le réservoir d'eau.";
         } else if (type.includes('filtre')) {
           coffeeTextSpan.textContent =
             "Vider la cafetière à filtre, jeter le filtre usagé, nettoyer la verseuse et la machine.";
@@ -209,7 +209,32 @@ function applyApartmentConfig(code) {
       coffeeLabelWrapper.style.display = 'none';
     }
   }
+    // --------- LAVERIE ----------
+    const laundryBox = document.getElementById('laundry-info');
+    if (laundryBox) {
+      const laundry = config.laundry;
+  
+      if (laundry && laundry.mapsUrl) {
+        const name = laundry.name || 'Laverie la plus proche';
+        const address = laundry.address || '';
+  
+        let html = `<strong>Laverie recommandée :</strong><br>`;
+        html += `${name}`;
+        if (address) {
+          html += `<br>${address}`;
+        }
+        html += `<br><a href="${laundry.mapsUrl}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps</a>`;
+  
+        laundryBox.innerHTML = html;
+        laundryBox.style.display = 'block';
+      } else {
+        // Pas de laverie définie pour cet appart
+        laundryBox.innerHTML = '';
+        laundryBox.style.display = 'none';
+      }
+    }
 }
+
 // --- Init ---
 
 document.addEventListener('DOMContentLoaded', function() {

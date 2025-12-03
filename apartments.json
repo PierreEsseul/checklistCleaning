@@ -56,9 +56,14 @@
         "defaultGuests": 4,
         "towelsPerGuest": { "big": 1, "small": 1 },
         "hasSofaBed": true
+    },
+    "laundry": {
+        "name": "Laverie proche MAGENTA",
+        "address": "59 Av. Édouard Vaillant, 92100 Boulogne-Billancourt",
+        "mapsUrl": "https://maps.app.goo.gl/M9kzGMjt9LWG8a5t9?g_st=ipc"
     }
     },
-    
+
     "MAGENTA": {
       "nom": "MAGENTA",
       "maxGuests": 4,

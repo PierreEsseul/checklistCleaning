@@ -84,7 +84,7 @@
       <label><input type="checkbox" name="nettoyer_wc"> Nettoyer et désinfecter les toilettes (intérieur + extérieur) et refermer la cuvette</label><br>
       <label><input type="checkbox" name="nettoyer_miroir"> Nettoyer les miroirs (sans traces)</label><br>
       <label><input type="checkbox" name="papier_toilette"> Vérifier le papier toilette : laisser un rouleau neuf, plus le rouleau entamé s’il y en a un</label><br>
-      <label><input type="checkbox" name="savon_tapis"> Vérifier savon, tapis de bain propre</label><br>
+      <label><input type="checkbox" name="savon_tapis"> Vérifier savon pour les mains, tapis de bain propre</label><br>
       <label><input type="checkbox" name="cheveux_sdb"> Vérifier qu’il n’y a aucun cheveu dans la salle de bain ainsi que les tiroirs</label><br>
 
       <div class="buttons">
@@ -170,6 +170,11 @@
       <h2>Linge</h2>
 
       <label><input type="checkbox" name="sechage_linge"> Une fois la machine terminée, aller à la laverie pour sécher draps et serviettes puis plier et ranger le linge propre</label><br>
+      
+      <!-- Bloc laverie dynamique selon l'appartement -->
+      <div id="laundry-info" class="laundry-info"></div>
+
+
       <label><input type="checkbox" name="linge_rangement"> Draps et serviettes de rechange rangés proprement</label><br>
 
       <div class="buttons">
