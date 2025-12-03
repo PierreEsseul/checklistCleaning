@@ -119,16 +119,22 @@ function applyApartmentConfig(code) {
 
   const config = apartmentConfigs[code];
 
-  // Réafficher toutes les options par défaut
-  document.querySelectorAll('.option-dishwasher, .option-plants, .option-sofabed')
-    .forEach(el => el.style.display = 'block');
+  // D'abord, tout réafficher par défaut
+  document.querySelectorAll(
+    '.option-dishwasher, .option-plants, .option-sofabed, .option-oven, .option-microwave, .option-coffee'
+  ).forEach(el => {
+    el.style.display = 'block';
+  });
 
+  // Si pas de config (AUTRE ou rien sélectionné)
   if (!config) {
     notesBox.innerHTML = '';
     return;
   }
 
-  let html = `<strong>Spécificités pour ${config.nom} :</strong>`;
+  // Bloc notes / capacité
+  let html = `<strong>Spécificités pour ${config.nom || code} :</strong>`;
+
   if (Array.isArray(config.notes) && config.notes.length > 0) {
     html += '<ul>';
     config.notes.forEach(n => {
@@ -146,17 +152,64 @@ function applyApartmentConfig(code) {
   const eq = config.equipment || {};
   const linens = config.linens || {};
 
-  // Affichage conditionnel sur quelques options
-  const dishLabel = document.querySelector('.option-dishwasher');
-  if (dishLabel) dishLabel.style.display = eq.hasDishwasher ? 'block' : 'none';
+  // --------- LAVE-VAISSELLE ----------
+  const dwLabel = document.querySelector('.option-dishwasher');
+  if (dwLabel) {
+    dwLabel.style.display = eq.hasDishwasher ? 'block' : 'none';
+  }
 
+  // --------- FOUR ----------
+  const ovenLabel = document.querySelector('.option-oven');
+  if (ovenLabel) {
+    ovenLabel.style.display = eq.hasOven ? 'block' : 'none';
+  }
+
+  // --------- MICRO-ONDES ----------
+  const microLabel = document.querySelector('.option-microwave');
+  if (microLabel) {
+    microLabel.style.display = eq.hasMicrowave ? 'block' : 'none';
+  }
+
+  // --------- PLANTES (case déjà en .option-plants sur l’étape Arrivée) ----------
   const plantsLabel = document.querySelector('.option-plants');
-  if (plantsLabel) plantsLabel.style.display = eq.hasPlants ? 'block' : 'none';
+  if (plantsLabel) {
+    plantsLabel.style.display = eq.hasPlants ? 'block' : 'none';
+  }
 
+  // --------- CANAPÉ-LIT (étape Chambres & lits) ----------
   const sofaLabel = document.querySelector('.option-sofabed');
-  if (sofaLabel) sofaLabel.style.display = linens.hasSofaBed ? 'block' : 'none';
-}
+  if (sofaLabel) {
+    sofaLabel.style.display = linens.hasSofaBed ? 'block' : 'none';
+  }
 
+  // --------- CAFETIÈRE ----------
+  const coffeeLabelWrapper = document.querySelector('.option-coffee');
+  const coffeeTextSpan = document.getElementById('label_cafetiere_text');
+
+  if (coffeeLabelWrapper) {
+    if (eq.hasCoffeeMachine) {
+      coffeeLabelWrapper.style.display = 'block';
+
+      if (coffeeTextSpan) {
+        const type = (eq.coffeeType || '').toLowerCase();
+
+        if (type.includes('nespresso') || type.includes('capsule')) {
+          coffeeTextSpan.textContent =
+            "Vider la cafetière à capsules, jeter les capsules usagées, nettoyer la machine et vider le réservoir d'eau.";
+        } else if (type.includes('filtre')) {
+          coffeeTextSpan.textContent =
+            "Vider la cafetière à filtre, jeter le filtre usagé, nettoyer la verseuse et la machine.";
+        } else {
+          coffeeTextSpan.textContent =
+            "Vider la cafetière, nettoyer la machine et vider le réservoir d'eau.";
+        }
+      }
+    } else {
+      // Pas de cafetière dans cet appart → on cache la ligne
+      coffeeLabelWrapper.style.display = 'none';
+    }
+  }
+}
 // --- Init ---
 
 document.addEventListener('DOMContentLoaded', function() {

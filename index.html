@@ -63,7 +63,7 @@
       <label><input type="checkbox" name="video_avant"> Faire une vidéo intégrale du logement AVANT ménage (toutes les pièces, placards, équipements)</label><br>
       <label><input type="checkbox" name="controle_logement"> Vérifier que rien n'a été cassé / endommagé</label><br>
       <label><input type="checkbox" name="controle_draps"> Contrôler l’état des draps et serviettes (taches, déchirures)</label><br>
-      <label><input type="checkbox" name="defaire_lits"> Défaire les lits et lancer une machine à laver avec draps et serviettes</label><br>
+      <label><input type="checkbox" name="defaire_lits"> Défaire les lits et lancer les machines à laver avec draps et serviettes</label><br>
       <label class="option-plants"><input type="checkbox" name="arroser_plantes"> Arroser les plantes si présentes</label><br>
       <label><input type="checkbox" name="volets"> Ouvrir l’ensemble des volets du logement.</label><br>
 
@@ -97,20 +97,73 @@
     <div class="step">
       <h2>Cuisine</h2>
 
-      <label><input type="checkbox" name="vider_cafetiere"> Vider la cafetière, jeter les capsules usagées et la nettoyer + vider l'eau</label><br>
-      <label><input type="checkbox" name="nettoyer_surfaces"> Nettoyer toutes les surfaces (plan de travail, crédence, plaques, hotte extérieure)</label><br>
-      <label><input type="checkbox" name="nettoyer_evier_cuisine"> Nettoyer l’évier de la cuisine et vérifier/nettoyer le siphon si nécessaire</label><br>
-      <label class="option-dishwasher"><input type="checkbox" name="vider_lave_vaisselle"> Vérifier que le lave-vaisselle est vidé (si présent)</label><br>
-      <label><input type="checkbox" name="vider_four_frigo"> Vérifier que four / micro-ondes / frigo sont vidés et propres</label><br>
-      <label><input type="checkbox" name="ordonner_vaisselle"> Vérifier et ranger la vaisselle (propre et complète)</label><br>
-      <label><input type="checkbox" name="eponge_liquide_torchon"> Vérifier : éponge propre, liquide vaisselle présent, torchon propre dans la cuisine</label><br>
-      <label><input type="checkbox" name="poubelles_vides"> Vider toutes les poubelles et remettre un sac propre (cuisine + salle de bain)</label><br>
+      <!-- CAFETIÈRE (affichée seulement si hasCoffeeMachine = true) -->
+      <label class="option-coffee">
+        <input type="checkbox" name="vider_cafetiere">
+        <span id="label_cafetiere_text">
+          Vider la cafetière, jeter les capsules usagées et la nettoyer + vider l'eau
+        </span>
+      </label><br>
+
+      <!-- SURFACES / ÉVIER = toujours visibles -->
+      <label>
+        <input type="checkbox" name="nettoyer_surfaces">
+        Nettoyer toutes les surfaces (plan de travail, crédence, plaques, hotte extérieure)
+      </label><br>
+
+      <label>
+        <input type="checkbox" name="nettoyer_evier_cuisine">
+        Nettoyer l’évier de la cuisine et vérifier/nettoyer le siphon si nécessaire
+      </label><br>
+
+      <!-- LAVE-VAISSELLE (option-dishwasher) -->
+      <label class="option-dishwasher">
+        <input type="checkbox" name="vider_lave_vaisselle">
+        Vérifier que le lave-vaisselle est vidé (si présent)
+      </label><br>
+
+      <!-- FOUR (option-oven) -->
+      <label class="option-oven">
+        <input type="checkbox" name="vider_four">
+        Vérifier que le four est vidé et propre
+      </label><br>
+
+      <!-- MICRO-ONDES (option-microwave) -->
+      <label class="option-microwave">
+        <input type="checkbox" name="vider_microondes">
+        Vérifier que le micro-ondes est vidé et propre
+      </label><br>
+
+      <!-- FRIGO (toujours présent dans ta logique, si un jour tu as un studio sans frigo tu pourras aussi le passer en option) -->
+      <label>
+        <input type="checkbox" name="vider_frigo">
+        Vérifier que le frigo est vidé et propre
+      </label><br>
+
+      <!-- VAISSELLE GLOBALE -->
+      <label>
+        <input type="checkbox" name="ordonner_vaisselle">
+        Vérifier et ranger la vaisselle (propre et complète)
+      </label><br>
+
+      <!-- CONSOS / PRODUITS -->
+      <label>
+        <input type="checkbox" name="eponge_liquide_torchon">
+        Vérifier : éponge propre, liquide vaisselle présent, torchon propre dans la cuisine
+      </label><br>
+
+      <!-- POUBELLES -->
+      <label>
+        <input type="checkbox" name="poubelles_vides">
+        Vider toutes les poubelles et remettre un sac propre (cuisine + salle de bain)
+      </label><br>
 
       <div class="buttons">
         <button type="button" class="btn" onclick="prevStep()">Précédent</button>
         <button type="button" class="btn btn-primary" onclick="nextStep()">Suivant</button>
       </div>
     </div>
+
 
     <!-- Étape 4 : Linge -->
     <div class="step">

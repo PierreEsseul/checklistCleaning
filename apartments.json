@@ -1,11 +1,72 @@
 {
+    "BERGERET": {
+        "nom": "BERGERET",
+        "maxGuests": 4,
+        "notes": [
+          "Respecter le parquet : utiliser uniquement des produits spéciaux bois.",
+          "Interdiction totale d’utiliser de la javel."
+        ],
+        "cleaningRules": {
+          "ecoOnly": true,
+          "bannedProducts": ["Javel"],
+          "preferredBrands": [],
+          "floorType": "parquet"
+        },
+        "equipment": {
+          "hasDishwasher": false,
+          "hasOven": true,
+          "hasMicrowave": true,
+          "hasWashingMachine": true,
+          "hasDryer": false,
+          "hasCoffeeMachine": true,
+          "coffeeType": "Filtre",
+          "hasKettle": true,
+          "hasToaster": true,
+          "hasPlants": false
+        },
+        "linens": {
+          "defaultGuests": 2,
+          "towelsPerGuest": { "big": 1, "small": 1 },
+          "hasSofaBed": false
+        }
+      },
+    
+    "BOULOGNE": {
+    "nom": "BOULOGNE",
+    "maxGuests": 4,
+    "notes": [],
+    "cleaningRules": {
+        "ecoOnly": false,
+        "bannedProducts": [],
+        "preferredBrands": []
+    },
+    "equipment": {
+        "hasDishwasher": false,
+        "hasOven": false,
+        "hasMicrowave": true,
+        "hasWashingMachine": true,
+        "hasDryer": false,
+        "hasCoffeeMachine": true,
+        "coffeeType": "Nespresso",
+        "hasKettle": true,
+        "hasToaster": true,
+        "hasPlants": false
+    },
+    "linens": {
+        "defaultGuests": 4,
+        "towelsPerGuest": { "big": 1, "small": 1 },
+        "hasSofaBed": true
+    }
+    },
+    
     "MAGENTA": {
       "nom": "MAGENTA",
       "maxGuests": 4,
       "notes": [
         "Produits ménagers 100% écologiques obligatoires.",
         "Interdiction totale d’utiliser de la javel.",
-        "Utiliser uniquement des produits de la marque Arbre Vert."
+        "Utiliser uniquement des produits de la marque Arbre Vert.",
+        "Pensez à bien arroser les plantes."
       ],
       "cleaningRules": {
         "ecoOnly": true,
@@ -32,66 +93,6 @@
       }
     },
   
-    "BERGERET": {
-      "nom": "BERGERET",
-      "maxGuests": 4,
-      "notes": [
-        "Respecter le parquet : utiliser uniquement des produits spéciaux bois.",
-        "Interdiction totale d’utiliser de la javel."
-      ],
-      "cleaningRules": {
-        "ecoOnly": true,
-        "bannedProducts": ["Javel"],
-        "preferredBrands": [],
-        "floorType": "parquet"
-      },
-      "equipment": {
-        "hasDishwasher": false,
-        "hasOven": true,
-        "hasMicrowave": true,
-        "hasWashingMachine": true,
-        "hasDryer": false,
-        "hasCoffeeMachine": true,
-        "coffeeType": "Filtre",
-        "hasKettle": true,
-        "hasToaster": true,
-        "hasPlants": false
-      },
-      "linens": {
-        "defaultGuests": 2,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": false
-      }
-    },
-  
-    "BOULOGNE": {
-      "nom": "BOULOGNE",
-      "maxGuests": null,
-      "notes": [],
-      "cleaningRules": {
-        "ecoOnly": false,
-        "bannedProducts": [],
-        "preferredBrands": []
-      },
-      "equipment": {
-        "hasDishwasher": false,
-        "hasOven": false,
-        "hasMicrowave": false,
-        "hasWashingMachine": false,
-        "hasDryer": false,
-        "hasCoffeeMachine": false,
-        "coffeeType": "",
-        "hasKettle": false,
-        "hasToaster": false,
-        "hasPlants": false
-      },
-      "linens": {
-        "defaultGuests": null,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": false
-      }
-    },
-  
     "ORSEL": {
       "nom": "ORSEL",
       "maxGuests": 3,
@@ -103,26 +104,26 @@
       },
       "equipment": {
         "hasDishwasher": false,
-        "hasOven": false,
-        "hasMicrowave": false,
-        "hasWashingMachine": false,
+        "hasOven": true,
+        "hasMicrowave": true,
+        "hasWashingMachine": true,
         "hasDryer": false,
-        "hasCoffeeMachine": false,
-        "coffeeType": "",
-        "hasKettle": false,
-        "hasToaster": false,
-        "hasPlants": false
+        "hasCoffeeMachine": true,
+        "coffeeType": "Nespresso",
+        "hasKettle": true,
+        "hasToaster": true,
+        "hasPlants": true
       },
       "linens": {
-        "defaultGuests": null,
+        "defaultGuests": 3,
         "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": false
+        "hasSofaBed": true
       }
     },
   
     "SURMELIN": {
       "nom": "SURMELIN",
-      "maxGuests": null,
+      "maxGuests": 3,
       "notes": [],
       "cleaningRules": {
         "ecoOnly": false,
@@ -131,26 +132,26 @@
       },
       "equipment": {
         "hasDishwasher": false,
-        "hasOven": false,
-        "hasMicrowave": false,
-        "hasWashingMachine": false,
+        "hasOven": true,
+        "hasMicrowave": true,
+        "hasWashingMachine": true,
         "hasDryer": false,
-        "hasCoffeeMachine": false,
+        "hasCoffeeMachine": true,
         "coffeeType": "",
-        "hasKettle": false,
-        "hasToaster": false,
+        "hasKettle": true,
+        "hasToaster": true,
         "hasPlants": false
       },
       "linens": {
-        "defaultGuests": null,
+        "defaultGuests": 3,
         "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": false
+        "hasSofaBed": true
       }
     },
   
     "TEMPLE165": {
       "nom": "TEMPLE 165",
-      "maxGuests": null,
+      "maxGuests": 4,
       "notes": [],
       "cleaningRules": {
         "ecoOnly": false,
@@ -158,27 +159,27 @@
         "preferredBrands": []
       },
       "equipment": {
-        "hasDishwasher": false,
-        "hasOven": false,
-        "hasMicrowave": false,
-        "hasWashingMachine": false,
+        "hasDishwasher": true,
+        "hasOven": true,
+        "hasMicrowave": true,
+        "hasWashingMachine": true,
         "hasDryer": false,
-        "hasCoffeeMachine": false,
-        "coffeeType": "",
-        "hasKettle": false,
-        "hasToaster": false,
+        "hasCoffeeMachine": true,
+        "coffeeType": "Nespresso",
+        "hasKettle": true,
+        "hasToaster": true,
         "hasPlants": false
       },
       "linens": {
-        "defaultGuests": null,
+        "defaultGuests": 4,
         "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": false
+        "hasSofaBed": true
       }
     },
   
     "VILLACHAPTAL": {
       "nom": "VILLA CHAPTAL",
-      "maxGuests": null,
+      "maxGuests": 4,
       "notes": [],
       "cleaningRules": {
         "ecoOnly": false,
