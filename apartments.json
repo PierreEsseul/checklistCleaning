@@ -28,186 +28,216 @@
           "defaultGuests": 2,
           "towelsPerGuest": { "big": 1, "small": 1 },
           "hasSofaBed": false
+        },
+        "laundry": {
+            "name": "Laverie 7/7",
+            "address": "Pl. des Capucins, 33000 Bordeaux",
+            "mapsUrl": "https://maps.app.goo.gl/7L5eBUizQfnKNbJ98?g_st=ipc"
         }
       },
     
     "BOULOGNE": {
-    "nom": "BOULOGNE",
-    "maxGuests": 4,
-    "notes": [],
-    "cleaningRules": {
-        "ecoOnly": false,
-        "bannedProducts": [],
-        "preferredBrands": []
-    },
-    "equipment": {
-        "hasDishwasher": false,
-        "hasOven": false,
-        "hasMicrowave": true,
-        "hasWashingMachine": true,
-        "hasDryer": false,
-        "hasCoffeeMachine": true,
-        "coffeeType": "Nespresso",
-        "hasKettle": true,
-        "hasToaster": true,
-        "hasPlants": false
-    },
-    "linens": {
-        "defaultGuests": 4,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": true
-    },
-    "laundry": {
-        "name": "Laverie proche MAGENTA",
-        "address": "59 Av. Édouard Vaillant, 92100 Boulogne-Billancourt",
-        "mapsUrl": "https://maps.app.goo.gl/M9kzGMjt9LWG8a5t9?g_st=ipc"
-    }
+        "nom": "BOULOGNE",
+        "maxGuests": 4,
+        "notes": [],
+        "cleaningRules": {
+            "ecoOnly": false,
+            "bannedProducts": [],
+            "preferredBrands": []
+        },
+        "equipment": {
+            "hasDishwasher": false,
+            "hasOven": false,
+            "hasMicrowave": true,
+            "hasWashingMachine": true,
+            "hasDryer": false,
+            "hasCoffeeMachine": true,
+            "coffeeType": "Nespresso",
+            "hasKettle": true,
+            "hasToaster": true,
+            "hasPlants": false
+        },
+        "linens": {
+            "defaultGuests": 4,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": true
+        },
+        "laundry": {
+            "name": "Laverie Edouard Vaillant",
+            "address": "59 Av. Édouard Vaillant, 92100 Boulogne-Billancourt",
+            "mapsUrl": "https://maps.app.goo.gl/M9kzGMjt9LWG8a5t9?g_st=ipc"
+        }
     },
 
     "MAGENTA": {
-      "nom": "MAGENTA",
-      "maxGuests": 4,
-      "notes": [
-        "Produits ménagers 100% écologiques obligatoires.",
-        "Interdiction totale d’utiliser de la javel.",
-        "Utiliser uniquement des produits de la marque Arbre Vert.",
-        "Pensez à bien arroser les plantes."
-      ],
-      "cleaningRules": {
-        "ecoOnly": true,
-        "bannedProducts": ["javel"],
-        "preferredBrands": ["Arbre Vert"],
-        "floorType": "parquet"
-      },
-      "equipment": {
-        "hasDishwasher": true,
-        "hasOven": false,
-        "hasMicrowave": true,
-        "hasWashingMachine": true,
-        "hasDryer": false,
-        "hasCoffeeMachine": true,
-        "coffeeType": "Nespresso",
-        "hasKettle": true,
-        "hasToaster": false,
-        "hasPlants": true
-      },
-      "linens": {
-        "defaultGuests": 4,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": true
-      }
+        "nom": "MAGENTA",
+        "maxGuests": 4,
+        "notes": [
+            "Produits ménagers 100% écologiques obligatoires.",
+            "Interdiction totale d’utiliser de la javel.",
+            "Utiliser uniquement des produits de la marque Arbre Vert.",
+            "Pensez à bien arroser les plantes."
+        ],
+        "cleaningRules": {
+            "ecoOnly": true,
+            "bannedProducts": ["javel"],
+            "preferredBrands": ["Arbre Vert"],
+            "floorType": "parquet"
+        },
+        "equipment": {
+            "hasDishwasher": true,
+            "hasOven": false,
+            "hasMicrowave": true,
+            "hasWashingMachine": true,
+            "hasDryer": false,
+            "hasCoffeeMachine": true,
+            "coffeeType": "Nespresso",
+            "hasKettle": true,
+            "hasToaster": false,
+            "hasPlants": true
+        },
+        "linens": {
+            "defaultGuests": 4,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": true
+        },
+        "laundry": {
+            "name": "Lave Moi - Laverie Paris 10",
+            "address": "11 Rue Lucien Sampaix, 75010 Paris",
+            "mapsUrl": "https://maps.app.goo.gl/Jgf1mAFvF9Em8yGH6?g_st=ipc"
+        }
     },
   
     "ORSEL": {
-      "nom": "ORSEL",
-      "maxGuests": 3,
-      "notes": [],
-      "cleaningRules": {
-        "ecoOnly": false,
-        "bannedProducts": [],
-        "preferredBrands": []
-      },
-      "equipment": {
-        "hasDishwasher": false,
-        "hasOven": true,
-        "hasMicrowave": true,
-        "hasWashingMachine": true,
-        "hasDryer": false,
-        "hasCoffeeMachine": true,
-        "coffeeType": "Nespresso",
-        "hasKettle": true,
-        "hasToaster": true,
-        "hasPlants": true
-      },
-      "linens": {
-        "defaultGuests": 3,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": true
-      }
+        "nom": "ORSEL",
+        "maxGuests": 3,
+        "notes": [],
+        "cleaningRules": {
+            "ecoOnly": false,
+            "bannedProducts": [],
+            "preferredBrands": []
+        },
+        "equipment": {
+            "hasDishwasher": false,
+            "hasOven": true,
+            "hasMicrowave": true,
+            "hasWashingMachine": true,
+            "hasDryer": false,
+            "hasCoffeeMachine": true,
+            "coffeeType": "Nespresso",
+            "hasKettle": true,
+            "hasToaster": true,
+            "hasPlants": true
+        },
+        "linens": {
+            "defaultGuests": 3,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": true
+        },
+        "laundry": {
+            "name": "La Laverie",
+            "address": "44 Rue d'Orsel, 75018 Paris",
+            "mapsUrl": "https://maps.app.goo.gl/6fghZn9LnQNsPezn6?g_st=ipc"
+        }
     },
   
     "SURMELIN": {
-      "nom": "SURMELIN",
-      "maxGuests": 3,
-      "notes": [],
-      "cleaningRules": {
-        "ecoOnly": false,
-        "bannedProducts": [],
-        "preferredBrands": []
-      },
-      "equipment": {
-        "hasDishwasher": false,
-        "hasOven": true,
-        "hasMicrowave": true,
-        "hasWashingMachine": true,
-        "hasDryer": false,
-        "hasCoffeeMachine": true,
-        "coffeeType": "",
-        "hasKettle": true,
-        "hasToaster": true,
-        "hasPlants": false
-      },
-      "linens": {
-        "defaultGuests": 3,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": true
-      }
+        "nom": "SURMELIN",
+        "maxGuests": 3,
+        "notes": [],
+        "cleaningRules": {
+            "ecoOnly": false,
+            "bannedProducts": [],
+            "preferredBrands": []
+        },
+        "equipment": {
+            "hasDishwasher": false,
+            "hasOven": true,
+            "hasMicrowave": true,
+            "hasWashingMachine": true,
+            "hasDryer": false,
+            "hasCoffeeMachine": true,
+            "coffeeType": "",
+            "hasKettle": true,
+            "hasToaster": true,
+            "hasPlants": false
+        },
+        "linens": {
+            "defaultGuests": 3,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": true
+        },
+        "laundry": {
+            "name": "Laverie Jade",
+            "address": "33 Rue du Surmelin, 75020 Paris",
+            "mapsUrl": "https://maps.app.goo.gl/GwsSjXdiVtbby4uF6?g_st=ipc"
+        }
     },
   
     "TEMPLE165": {
-      "nom": "TEMPLE 165",
-      "maxGuests": 4,
-      "notes": [],
-      "cleaningRules": {
-        "ecoOnly": false,
-        "bannedProducts": [],
-        "preferredBrands": []
-      },
-      "equipment": {
-        "hasDishwasher": true,
-        "hasOven": true,
-        "hasMicrowave": true,
-        "hasWashingMachine": true,
-        "hasDryer": false,
-        "hasCoffeeMachine": true,
-        "coffeeType": "Nespresso",
-        "hasKettle": true,
-        "hasToaster": true,
-        "hasPlants": false
-      },
-      "linens": {
-        "defaultGuests": 4,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": true
-      }
+        "nom": "TEMPLE 165",
+        "maxGuests": 4,
+        "notes": [],
+        "cleaningRules": {
+            "ecoOnly": false,
+            "bannedProducts": [],
+            "preferredBrands": []
+        },
+        "equipment": {
+            "hasDishwasher": true,
+            "hasOven": true,
+            "hasMicrowave": true,
+            "hasWashingMachine": true,
+            "hasDryer": false,
+            "hasCoffeeMachine": true,
+            "coffeeType": "Nespresso",
+            "hasKettle": true,
+            "hasToaster": true,
+            "hasPlants": false
+        },
+        "linens": {
+            "defaultGuests": 4,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": true
+        },
+        "laundry": {
+            "name": "Laverie Lav Speed",
+            "address": "6 Rue Volta, 75003 Paris",
+            "mapsUrl": "https://maps.app.goo.gl/xhRZHWNWggHkCYgt6?g_st=ipc"
+        }
     },
   
     "VILLACHAPTAL": {
-      "nom": "VILLA CHAPTAL",
-      "maxGuests": 4,
-      "notes": [],
-      "cleaningRules": {
-        "ecoOnly": false,
-        "bannedProducts": [],
-        "preferredBrands": []
-      },
-      "equipment": {
-        "hasDishwasher": false,
-        "hasOven": false,
-        "hasMicrowave": false,
-        "hasWashingMachine": false,
-        "hasDryer": false,
-        "hasCoffeeMachine": false,
-        "coffeeType": "",
-        "hasKettle": false,
-        "hasToaster": false,
-        "hasPlants": false
-      },
-      "linens": {
-        "defaultGuests": null,
-        "towelsPerGuest": { "big": 1, "small": 1 },
-        "hasSofaBed": false
-      }
+        "nom": "VILLA CHAPTAL",
+        "maxGuests": 4,
+        "notes": [],
+        "cleaningRules": {
+            "ecoOnly": false,
+            "bannedProducts": [],
+            "preferredBrands": []
+        },
+        "equipment": {
+            "hasDishwasher": false,
+            "hasOven": false,
+            "hasMicrowave": false,
+            "hasWashingMachine": false,
+            "hasDryer": false,
+            "hasCoffeeMachine": false,
+            "coffeeType": "",
+            "hasKettle": false,
+            "hasToaster": false,
+            "hasPlants": false
+        },
+        "linens": {
+            "defaultGuests": null,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": false
+        },
+        "laundry": {
+            "name": "Laverie Cl",
+            "address": "81 Rue Chaptal, 92300 Levallois-Perret",
+            "mapsUrl": "https://maps.app.goo.gl/zzv1QnJMxZVXsk9DA?g_st=ipc"
+        }
     },
   
     "AUTRE": {
