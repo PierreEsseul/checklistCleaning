@@ -15,6 +15,8 @@ const depLaverieInput = document.getElementById('depenses_laverie');
 const montantMenageSpan = document.getElementById('montant_menage');
 const montantTotalSpan = document.getElementById('montant_total');
 
+const inactiveCheckboxNames = new Set(); // cases à ignorer (non applicables au logement)
+
 const TAUX_HORAIRE = 15; // 15 €/h
 
 // "Base de données" chargée depuis apartments.json
@@ -118,6 +120,8 @@ function applyApartmentConfig(code) {
   if (!notesBox) return;
 
   const config = apartmentConfigs[code];
+  // On repart de zéro à chaque changement de logement
+  inactiveCheckboxNames.clear();
 
   // D'abord, tout réafficher par défaut
   document.querySelectorAll(
@@ -155,31 +159,66 @@ function applyApartmentConfig(code) {
   // --------- LAVE-VAISSELLE ----------
   const dwLabel = document.querySelector('.option-dishwasher');
   if (dwLabel) {
-    dwLabel.style.display = eq.hasDishwasher ? 'block' : 'none';
+    const cb = dwLabel.querySelector('input[type="checkbox"]');
+    if (eq.hasDishwasher) {
+      dwLabel.style.display = 'block';
+      if (cb) inactiveCheckboxNames.delete(cb.name);
+    } else {
+      dwLabel.style.display = 'none';
+      if (cb) inactiveCheckboxNames.add(cb.name);
+    }
   }
 
   // --------- FOUR ----------
   const ovenLabel = document.querySelector('.option-oven');
   if (ovenLabel) {
-    ovenLabel.style.display = eq.hasOven ? 'block' : 'none';
+    const cb = ovenLabel.querySelector('input[type="checkbox"]');
+    if (eq.hasOven) {
+      ovenLabel.style.display = 'block';
+      if (cb) inactiveCheckboxNames.delete(cb.name);
+    } else {
+      ovenLabel.style.display = 'none';
+      if (cb) inactiveCheckboxNames.add(cb.name);
+    }
   }
 
   // --------- MICRO-ONDES ----------
   const microLabel = document.querySelector('.option-microwave');
   if (microLabel) {
-    microLabel.style.display = eq.hasMicrowave ? 'block' : 'none';
+    const cb = microLabel.querySelector('input[type="checkbox"]');
+    if (eq.hasMicrowave) {
+      microLabel.style.display = 'block';
+      if (cb) inactiveCheckboxNames.delete(cb.name);
+    } else {
+      microLabel.style.display = 'none';
+      if (cb) inactiveCheckboxNames.add(cb.name);
+    }
   }
 
   // --------- PLANTES (case déjà en .option-plants sur l’étape Arrivée) ----------
   const plantsLabel = document.querySelector('.option-plants');
   if (plantsLabel) {
-    plantsLabel.style.display = eq.hasPlants ? 'block' : 'none';
+    const cb = plantsLabel.querySelector('input[type="checkbox"]');
+    if (eq.hasPlants) {
+      plantsLabel.style.display = 'block';
+      if (cb) inactiveCheckboxNames.delete(cb.name);
+    } else {
+      plantsLabel.style.display = 'none';
+      if (cb) inactiveCheckboxNames.add(cb.name);
+    }
   }
 
   // --------- CANAPÉ-LIT (étape Chambres & lits) ----------
   const sofaLabel = document.querySelector('.option-sofabed');
   if (sofaLabel) {
-    sofaLabel.style.display = linens.hasSofaBed ? 'block' : 'none';
+    const cb = sofaLabel.querySelector('input[type="checkbox"]');
+    if (linens.hasSofaBed) {
+      sofaLabel.style.display = 'block';
+      if (cb) inactiveCheckboxNames.delete(cb.name);
+    } else {
+      sofaLabel.style.display = 'none';
+      if (cb) inactiveCheckboxNames.add(cb.name);
+    }
   }
 
   // --------- CAFETIÈRE ----------
@@ -187,28 +226,41 @@ function applyApartmentConfig(code) {
   const coffeeTextSpan = document.getElementById('label_cafetiere_text');
 
   if (coffeeLabelWrapper) {
+    const cb = coffeeLabelWrapper.querySelector('input[type="checkbox"]');
+
     if (eq.hasCoffeeMachine) {
       coffeeLabelWrapper.style.display = 'block';
+      if (cb) inactiveCheckboxNames.delete(cb.name);
 
       if (coffeeTextSpan) {
-        const type = (eq.coffeeType || '').toLowerCase();
+        const typeRaw = (eq.coffeeType || '').toUpperCase();
+        const defaultGuests = linens.defaultGuests || config.maxGuests || 0;
 
-        if (type.includes('nespresso') || type.includes('capsule')) {
+        if (typeRaw.includes('NESPRESSO') || typeRaw.includes('CAPSULE')) {
+          const nbCapsules = defaultGuests > 0 ? defaultGuests : 1;
           coffeeTextSpan.textContent =
-            "Vider les capsules de la cafetière, jeter les capsules usagées, nettoyer la machine et vider le réservoir d'eau.";
-        } else if (type.includes('filtre')) {
+            `Machine à café : Nespresso. ` +
+            `Laisser ${nbCapsules} capsule(s) (1 par personne), ` +
+            `vider le bac à capsules usagées, vider le réservoir d’eau ` +
+            `et bien nettoyer la machine.`;
+        } else if (typeRaw.includes('FILTRE')) {
           coffeeTextSpan.textContent =
-            "Vider la cafetière à filtre, jeter le filtre usagé, nettoyer la verseuse et la machine.";
+            `Machine à café : filtre. ` +
+            `Vider le filtre usagé, rincer le porte-filtre et la verseuse, ` +
+            `vider le réservoir d’eau et bien nettoyer la machine.`;
         } else {
           coffeeTextSpan.textContent =
-            "Vider la cafetière, nettoyer la machine et vider le réservoir d'eau.";
+            `Machine à café : vérifier le type de machine. ` +
+            `Vider le contenu (capsules, dosettes ou marc), ` +
+            `vider le réservoir d’eau et bien nettoyer la machine.`;
         }
       }
     } else {
-      // Pas de cafetière dans cet appart → on cache la ligne
       coffeeLabelWrapper.style.display = 'none';
+      if (cb) inactiveCheckboxNames.add(cb.name);
     }
   }
+
     // --------- LAVERIE ----------
     const laundryBox = document.getElementById('laundry-info');
     if (laundryBox) {
@@ -330,11 +382,19 @@ form.addEventListener('submit', function(e) {
 
   // Cases cochées / non cochées
   const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-  const total = checkboxes.length;
+
+  let total = 0;
   let checked = 0;
   const uncheckedLabels = [];
 
   checkboxes.forEach(cb => {
+    // Si cette case est marquée comme "inactive" (non applicable au logement), on l'ignore complètement
+    if (inactiveCheckboxNames.has(cb.name)) {
+      return;
+    }
+
+    total++; // seulement les cases applicables
+
     if (cb.checked) {
       checked++;
     } else {
@@ -345,6 +405,7 @@ form.addEventListener('submit', function(e) {
       }
     }
   });
+
 
   let recapTaches;
   if (uncheckedLabels.length === 0) {
