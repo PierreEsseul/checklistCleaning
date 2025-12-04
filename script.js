@@ -238,10 +238,10 @@ function applyApartmentConfig(code) {
 // --- Init ---
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Init EmailJS v4 (mets ta clé publique)
+  // Init EmailJS v4 (clé publique)
   if (window.emailjs) {
     emailjs.init({
-      publicKey: 'YOUR_PUBLIC_KEY', // <-- à remplacer
+      publicKey: 'GKgT-pDcU1CUruKvJ',
     });
   }
 

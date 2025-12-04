@@ -13,9 +13,9 @@
           "floorType": "parquet"
         },
         "equipment": {
-          "hasDishwasher": false,
+          "hasDishwasher": true,
           "hasOven": true,
-          "hasMicrowave": true,
+          "hasMicrowave": false,
           "hasWashingMachine": true,
           "hasDryer": false,
           "hasCoffeeMachine": true,
@@ -25,9 +25,9 @@
           "hasPlants": false
         },
         "linens": {
-          "defaultGuests": 2,
+          "defaultGuests": 4,
           "towelsPerGuest": { "big": 1, "small": 1 },
-          "hasSofaBed": false
+          "hasSofaBed": true
         },
         "laundry": {
             "name": "Laverie 7/7",
