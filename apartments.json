@@ -111,9 +111,11 @@
     "ORSEL": {
         "nom": "ORSEL",
         "maxGuests": 3,
-        "notes": [],
+        "notes": [
+            "Pensez à bien arroser les plantes."
+        ],
         "cleaningRules": {
-            "ecoOnly": false,
+            "ecoOnly": true,
             "bannedProducts": [],
             "preferredBrands": []
         },
@@ -141,36 +143,41 @@
         }
     },
   
-    "SURMELIN": {
-        "nom": "SURMELIN",
-        "maxGuests": 3,
-        "notes": [],
+    "SAINT GEORGES": {
+        "nom": "SAINT GEORGES",
+        "maxGuests": 2,
+        "notes": [
+            "Produits ménagers 100% écologiques obligatoires.",
+            "Interdiction totale d’utiliser de la javel.",
+            "Utiliser uniquement des produits type Vinaire alcool.",
+            "Pensez à bien arroser les plantes."
+        ],
         "cleaningRules": {
             "ecoOnly": false,
-            "bannedProducts": [],
-            "preferredBrands": []
+            "bannedProducts": ["Javel"],
+            "preferredBrands": ["Vinaigre Alcool"]
         },
         "equipment": {
-            "hasDishwasher": false,
+            "hasDishwasher": true,
             "hasOven": true,
             "hasMicrowave": true,
             "hasWashingMachine": true,
             "hasDryer": false,
             "hasCoffeeMachine": true,
-            "coffeeType": "",
+            "coffeeType": "Nespresso",
             "hasKettle": true,
             "hasToaster": true,
             "hasPlants": false
         },
         "linens": {
-            "defaultGuests": 3,
+            "defaultGuests": 2,
             "towelsPerGuest": { "big": 1, "small": 1 },
             "hasSofaBed": true
         },
         "laundry": {
-            "name": "Laverie Jade",
-            "address": "33 Rue du Surmelin, 75020 Paris",
-            "mapsUrl": "https://maps.app.goo.gl/GwsSjXdiVtbby4uF6?g_st=ipc"
+            "name": "Laverie",
+            "address": "65 Rue du Faubourg Montmartre, 75009 Paris, France",
+            "mapsUrl": "https://maps.app.goo.gl/uS2XDgzeKb2rRyV8A"
         }
     },
   
