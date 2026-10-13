@@ -120,6 +120,28 @@ function applyApartmentConfig(code) {
   if (!notesBox) return;
 
   const config = apartmentConfigs[code];
+  // Afficher la même laverie dès la sélection et dans l'étape Linge.
+  document.querySelectorAll('#laundry-preview, #laundry-info').forEach(box => {
+    box.replaceChildren();
+    const laundry = config?.laundry;
+    box.hidden = !laundry || !(laundry.name || laundry.address || laundry.mapsUrl);
+    if (box.hidden) return;
+
+    const title = document.createElement('strong');
+    title.textContent = 'Laverie recommandée :';
+    box.append(title);
+    [laundry.name, laundry.address].filter(Boolean).forEach(text => {
+      box.append(document.createElement('br'), document.createTextNode(text));
+    });
+    if (laundry.mapsUrl) {
+      const link = document.createElement('a');
+      link.href = laundry.mapsUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'Ouvrir dans Google Maps';
+      box.append(document.createElement('br'), link);
+    }
+  });
   // On repart de zéro à chaque changement de logement
   inactiveCheckboxNames.clear();
 
@@ -261,30 +283,7 @@ function applyApartmentConfig(code) {
     }
   }
 
-    // --------- LAVERIE ----------
-    const laundryBox = document.getElementById('laundry-info');
-    if (laundryBox) {
-      const laundry = config.laundry;
-  
-      if (laundry && laundry.mapsUrl) {
-        const name = laundry.name || 'Laverie la plus proche';
-        const address = laundry.address || '';
-  
-        let html = `<strong>Laverie recommandée :</strong><br>`;
-        html += `${name}`;
-        if (address) {
-          html += `<br>${address}`;
-        }
-        html += `<br><a href="${laundry.mapsUrl}" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps</a>`;
-  
-        laundryBox.innerHTML = html;
-        laundryBox.style.display = 'block';
-      } else {
-        // Pas de laverie définie pour cet appart
-        laundryBox.innerHTML = '';
-        laundryBox.style.display = 'none';
-      }
-    }
+
 }
 
 // --- Init ---
