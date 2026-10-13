@@ -275,7 +275,12 @@
 
       <div class="buttons">
         <button type="button" class="btn" onclick="prevStep()">Précédent</button>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" class="btn btn-primary submit-button">
+          <span class="submit-label">Envoyer</span>
+          <svg class="submit-progress" aria-hidden="true" width="100%" height="100%">
+            <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="20" pathLength="100"></rect>
+          </svg>
+        </button>
       </div>
 
       <div id="form-result" class="form-result" role="status" aria-live="polite"></div>

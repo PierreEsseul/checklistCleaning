@@ -358,9 +358,27 @@ form.addEventListener('submit', async function(e) {
   if (isSending || isSent) return;
 
   const submitButton = form.querySelector('button[type="submit"]');
+  const submitLabel = submitButton.querySelector('.submit-label');
   isSending = true;
   submitButton.disabled = true;
-  submitButton.textContent = 'Envoi en cours…';
+  submitLabel.textContent = 'Envoi en cours…';
+  submitButton.classList.add('is-sending');
+  submitButton.style.setProperty('--send-progress', '0');
+  submitButton.setAttribute('aria-busy', 'true');
+  const animationStart = performance.now();
+  let progressFrame;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animateSendProgress(now) {
+    // EmailJS ne fournit pas de progression : rester sous 100 % avant sa confirmation.
+    const progress = 90 * (1 - Math.exp(-(now - animationStart) / 1800));
+    submitButton.style.setProperty('--send-progress', progress.toFixed(2));
+    progressFrame = requestAnimationFrame(animateSendProgress);
+  }
+  if (reduceMotion) {
+    submitButton.style.setProperty('--send-progress', '25');
+  } else {
+    progressFrame = requestAnimationFrame(animateSendProgress);
+  }
 
   const formData = new FormData(form);
 
@@ -470,17 +488,27 @@ ${commentaires}
       commentaires: commentaires
     });
     isSent = true;
+    cancelAnimationFrame(progressFrame);
+    submitButton.classList.add('is-complete');
+    submitButton.style.setProperty('--send-progress', '100');
+    submitLabel.textContent = 'Envoi réussi';
+    submitButton.setAttribute('aria-busy', 'false');
+    localStorage.removeItem(STORAGE_KEY);
+    await new Promise(resolve => setTimeout(resolve, reduceMotion ? 0 : 600));
     submitButton.hidden = true;
     if (resultBox) resultBox.textContent = 'Formulaire bien envoyé';
-    localStorage.removeItem(STORAGE_KEY);
   } catch (error) {
     console.error('Erreur EmailJS :', error);
     if (resultBox) {
       resultBox.textContent = 'Le formulaire n’a pas pu être envoyé. Veuillez réessayer.';
     }
     submitButton.disabled = false;
-    submitButton.textContent = 'Envoyer';
+    submitLabel.textContent = 'Envoyer';
   } finally {
+    cancelAnimationFrame(progressFrame);
+    submitButton.classList.remove('is-sending', 'is-complete');
+    submitButton.style.removeProperty('--send-progress');
+    submitButton.setAttribute('aria-busy', 'false');
     isSending = false;
   }
 });

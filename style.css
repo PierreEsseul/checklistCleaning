@@ -150,6 +150,45 @@ input[type="checkbox"] {
   cursor: not-allowed;
 }
 
+.submit-button {
+  position: relative;
+}
+
+.submit-progress {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.submit-progress rect {
+  fill: none;
+  stroke: #ffd166;
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--send-progress, 0));
+}
+
+.submit-button.is-sending:disabled {
+  opacity: 1;
+  cursor: wait;
+}
+
+.submit-button.is-sending .submit-progress {
+  display: block;
+}
+
+.submit-button.is-complete .submit-progress rect {
+  stroke: #91f2ad;
+  transition: stroke-dashoffset 250ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit-button.is-complete .submit-progress rect {
+    transition: none;
+  }
+}
+
 .amount-row {
   font-size: 0.95rem;
   margin: 6px 0;
