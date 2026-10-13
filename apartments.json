@@ -36,39 +36,6 @@
         }
       },
     
-    "BOULOGNE": {
-        "nom": "BOULOGNE",
-        "maxGuests": 4,
-        "notes": [],
-        "cleaningRules": {
-            "ecoOnly": false,
-            "bannedProducts": [],
-            "preferredBrands": []
-        },
-        "equipment": {
-            "hasDishwasher": false,
-            "hasOven": false,
-            "hasMicrowave": true,
-            "hasWashingMachine": true,
-            "hasDryer": false,
-            "hasCoffeeMachine": true,
-            "coffeeType": "Nespresso",
-            "hasKettle": true,
-            "hasToaster": true,
-            "hasPlants": false
-        },
-        "linens": {
-            "defaultGuests": 4,
-            "towelsPerGuest": { "big": 1, "small": 1 },
-            "hasSofaBed": true
-        },
-        "laundry": {
-            "name": "Laverie Edouard Vaillant",
-            "address": "59 Av. Édouard Vaillant, 92100 Boulogne-Billancourt",
-            "mapsUrl": "https://maps.app.goo.gl/M9kzGMjt9LWG8a5t9?g_st=ipc"
-        }
-    },
-
     "MAGENTA": {
         "nom": "MAGENTA",
         "maxGuests": 4,
@@ -247,6 +214,36 @@
         }
     },
   
+    "NICOLAS CHARLET": {
+        "nom": "NICOLAS CHARLET",
+        "maxGuests": null,
+        "notes": [],
+        "cleaningRules": {},
+        "equipment": {},
+        "linens": {},
+        "laundry": null
+    },
+
+    "PETIT": {
+        "nom": "PETIT",
+        "maxGuests": null,
+        "notes": [],
+        "cleaningRules": {},
+        "equipment": {},
+        "linens": {},
+        "laundry": null
+    },
+
+    "SAINT-MAUR": {
+        "nom": "SAINT-MAUR",
+        "maxGuests": null,
+        "notes": [],
+        "cleaningRules": {},
+        "equipment": {},
+        "linens": {},
+        "laundry": null
+    },
+
     "AUTRE": {
       "nom": "Autre",
       "notes": ["Merci de vérifier les consignes en commentaire."],
