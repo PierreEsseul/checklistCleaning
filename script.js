@@ -350,9 +350,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // --- Submit du formulaire ---
+let isSending = false;
+let isSent = false;
 
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', async function(e) {
   e.preventDefault();
+  if (isSending || isSent) return;
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  isSending = true;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Envoi en cours…';
 
   const formData = new FormData(form);
 
@@ -440,19 +448,14 @@ Commentaires :
 ${commentaires}
   `.trim();
 
-  // Affichage local
   if (resultBox) {
     resultBox.style.display = 'block';
-    resultBox.textContent = recapGlobal;
+    resultBox.textContent = 'Envoi en cours…';
   }
 
-  console.log('Récap ménage :\n', recapGlobal);
-
-  // --- Envoi EmailJS : mets tes IDs et décommente ---
-
-  
-  if (window.emailjs) {
-    emailjs.send('service_7jwblni', 'template_ycc5377', {
+  try {
+    if (!window.emailjs) throw new Error('Service EmailJS indisponible');
+    await emailjs.send('service_7jwblni', 'template_ycc5377', {
       logement: logement,
       agent: agent,
       date: date,
@@ -465,16 +468,19 @@ ${commentaires}
       montant_laverie: depLaverie.toFixed(2),
       total_global: totalGlobal.toFixed(2),
       commentaires: commentaires
-    }).then(function() {
-      alert('Formulaire envoyé par email avec succès !');
-    }, function(error) {
-      console.error('Erreur EmailJS :', error);
-      alert('Formulaire rempli, mais erreur lors de l’envoi email.');
     });
-  } else {
-    alert('Formulaire rempli ! Pense à envoyer la vidéo sur WhatsApp.');
+    isSent = true;
+    submitButton.hidden = true;
+    if (resultBox) resultBox.textContent = 'Formulaire bien envoyé';
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.error('Erreur EmailJS :', error);
+    if (resultBox) {
+      resultBox.textContent = 'Le formulaire n’a pas pu être envoyé. Veuillez réessayer.';
+    }
+    submitButton.disabled = false;
+    submitButton.textContent = 'Envoyer';
+  } finally {
+    isSending = false;
   }
-
-  // On nettoie le stockage pour le prochain ménage
-  localStorage.removeItem(STORAGE_KEY);
 });
