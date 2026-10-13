@@ -217,7 +217,12 @@
     "NICOLAS CHARLET": {
         "nom": "NICOLAS CHARLET",
         "maxGuests": null,
-        "notes": [],
+        "notes": [
+            "Produits ménagers 100% écologiques obligatoires.",
+            "Interdiction totale d’utiliser de la javel.",
+            "Utiliser uniquement des produits type Vinaire alcool.",
+            "Capsule de café spécial, ne pas utiliser celle habituel, voir avec Pierre."
+        ],
         "cleaningRules": {},
         "equipment": {},
         "linens": {},
@@ -226,7 +231,7 @@
 
     "PETIT": {
         "nom": "PETIT",
-        "maxGuests": null,
+        "maxGuests": 4,
         "notes": [],
         "cleaningRules": {},
         "equipment": {},
@@ -236,7 +241,7 @@
 
     "SAINT-MAUR": {
         "nom": "SAINT-MAUR",
-        "maxGuests": null,
+        "maxGuests": 6,
         "notes": [],
         "cleaningRules": {},
         "equipment": {},
