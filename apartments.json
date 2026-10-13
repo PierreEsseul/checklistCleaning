@@ -221,12 +221,30 @@
             "Produits ménagers 100% écologiques obligatoires.",
             "Interdiction totale d’utiliser de la javel.",
             "Utiliser uniquement des produits type Vinaire alcool.",
-            "Capsule de café spécial, ne pas utiliser celle habituel, voir avec Pierre."
+            "Capsule de café spécial, ne pas utiliser celle habituelle, voir avec Pierre."
         ],
         "cleaningRules": {},
-        "equipment": {},
-        "linens": {},
-        "laundry": null
+        "equipment": {
+            "hasDishwasher": false,
+            "hasOven": false,
+            "hasMicrowave": true,
+            "hasWashingMachine": true,
+            "hasDryer": true,
+            "hasCoffeeMachine": true,
+            "coffeeType": "Nespresso Vertuo",
+            "hasKettle": true,
+            "hasToaster": true,
+            "hasPlants": false},
+        "linens": {
+            "defaultGuests": 2,
+            "towelsPerGuest": { "big": 1, "small": 1 },
+            "hasSofaBed": false
+        },
+        "laundry": {
+            "name": "Laverie libre-service",
+            "address": "1 Rue Brown-Séquard, 75015 Paris",
+            "mapsUrl": "https://maps.app.goo.gl/Jf2H24HF7fsT7fE2A"
+        }
     },
 
     "PETIT": {
@@ -236,7 +254,11 @@
         "cleaningRules": {},
         "equipment": {},
         "linens": {},
-        "laundry": null
+        "laundry": {
+            "name": "LAVERIE MIELE",
+            "address": "15 Rue Eugène Jumin, 75019 Paris",
+            "mapsUrl": "https://maps.app.goo.gl/jkCz5jYyc66PiroCA"
+        }
     },
 
     "SAINT-MAUR": {
@@ -246,7 +268,11 @@
         "cleaningRules": {},
         "equipment": {},
         "linens": {},
-        "laundry": null
+        "laundry":  {
+            "name": "Laverie Saint-Maur",
+            "address": "1 Rue Fulton, 94210 Saint-Maur-des-Fossés",
+            "mapsUrl": "https://maps.app.goo.gl/KeG3YWZUE59qwJXt9"
+        }
     },
 
     "AUTRE": {
